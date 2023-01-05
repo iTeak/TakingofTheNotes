@@ -1,15 +1,19 @@
-const { request } = require("express");
-const express = require ("express")
-const app = express()
-app.get ("/",(req, res )=> {
-    res.send("Hello World")
-})
-app.listen(3000);
-console.log("running")
-app.use(express.json());
+const express = require("express");
+const path = require("path");
+const fs = require("fs");
+
+// Express app to listen on port 3000
+let app = express();
+let PORT = process.env.PORT || 3000;
+
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public'));
-app.use('/api', route1);
-app.use('/', routeshtml);
-const route1 = require('./Routes/route1');
-const routeshtml = require('./Routes/routeshtml');
+app.use(express.json());
+app.use(express.static("public"));
+let notes = require("./db/db.json");
+
+// Routes 
+app.get("/notes", function (req, res) {
+  res.sendFile(path.join(__dirname, "public/notes.html"));
+});
+
+
