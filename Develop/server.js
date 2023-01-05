@@ -11,5 +11,5 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use('/api', route1);
 app.use('/', routeshtml);
-const apiRoutes = require('./Routes/route1');
-const htmlRoutes = require('./Routes/routeshtml');
+const route1 = require('./Routes/route1');
+const routeshtml = require('./Routes/routeshtml');
